@@ -1,7 +1,7 @@
 function createPlayer(name){
-    const first = false
-    const toggleFirst = () => !first;
-    const isFirst = () => first
+    let first = false
+    const toggleFirst = () => first=!first;
+    const isFirst = () => first;
     return {name, toggleFirst,isFirst}
 }
 
@@ -21,55 +21,70 @@ function arrayBoard (){
     return {board, xTurn, oTurn, printBoard}
 }
 
+function checkWinners(gameDisplay){
+    gameDisplay.printBoard()
+    boardArray=gameDisplay.board
+    var displayMessage = 'No one has won yet'
+    winYet = false
+    for(let i  = 0; i < 9; i=i+3){
+        if(boardArray[i] == boardArray[i+1] && boardArray[i+2] == boardArray[i] && boardArray[i] != '.'){
+            displayMessage = (`${boardArray[i]} wins`)
+            winYet = true
+        }
+    }
+
+    for(let i  = 0; i < 3; i++){
+        if(boardArray[i] == boardArray[i+3] && boardArray[i+6] == boardArray[i] && boardArray[i] != '.'){
+            displayMessage = (`${boardArray[i]} wins`)
+            winYet = true
+        }
+    }
+
+    if(boardArray[0] == boardArray[4] && boardArray[8] == boardArray[0] && boardArray[8] != '.'){
+        displayMessage = (`${boardArray[0]} wins`)
+        winYet = true
+    }
+
+    else if(boardArray[2] == boardArray[4] && boardArray[6] == boardArray[2] && boardArray[6] != '.'){
+        displayMessage = (`${boardArray[2]} wins`)
+        winYet = true
+    }
+    return {winYet, displayMessage}
+}
+
+function playerTurn(player1, player2, board){
+    var choice = prompt("Enter a number: ");
+    if(player1.isFirst()){
+        board.xTurn(parseInt(choice))
+        board.printBoard()
+    }
+    else{
+        board.oTurn(parseInt(choice))
+        board.printBoard()
+    }
+
+    player1.toggleFirst()
+    player2.toggleFirst()
+}
+
+
+
 function game(){
     const gameDisplay = arrayBoard();
     const player1 = createPlayer('player1')
-    player1.toggleFirst()
+    player1.toggleFirst();
     const player2 = createPlayer('player2')
 
-    const turn = () => {
-        if(player1.isFirst()){
-            gameDisplay.xTurn(0)
-        }
-        else{
-            gameDisplay.oTurn(0)
-        }
-
-        player1.toggleFirst()
-        player2.toggleFirst()
+    while(!checkWinners(gameDisplay).winYet){
+        playerTurn(player1, player2, gameDisplay)
     }
 
-    function checkWinners(){
-        gameDisplay.printBoard()
-        boardArray=gameDisplay.board
-        for(let i  = 0; i < 9; i=i+3){
-            if(boardArray[i] == boardArray[i+1] && boardArray[i+2] == boardArray[i] && boardArray[i] != '.'){
-                return (`${boardArray[i]} wins`)
-            }
-        }
+    displayMessage = checkWinners(gameDisplay).displayMessage
 
-        for(let i  = 0; i < 3; i++){
-            if(boardArray[i] == boardArray[i+3] && boardArray[i+6] == boardArray[i] && boardArray[i] != '.'){
-                return (`${boardArray[i]} wins`)
-            }
-        }
-
-        if(boardArray[0] == boardArray[4] && boardArray[8] == boardArray[8] && boardArray[8] != '.'){
-            return (`${boardArray[0]} wins`)
-        }
-
-        else if(boardArray[2] == boardArray[4] && boardArray[6] == boardArray[6] && boardArray[6] != '.'){
-            return (`${boardArray[2]} wins`)
-        }
-    }
-
-    return Object.assign({turn}, {checkWinners}, gameDisplay)
+    return Object.assign({checkWinners}, {displayMessage})
 }
 
 const gamer = game()
-gamer.checkWinners()
-gamer.oTurn(0)
-gamer.oTurn(3)
-gamer.oTurn(6)
-console.log(gamer.checkWinners())
+gamer.checkWinners
+console.log(gamer.displayMessage)
 
