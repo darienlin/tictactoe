@@ -22,7 +22,7 @@ function arrayBoard (){
 }
 
 function game(){
-    const gameDisplay =  arrayBoard();
+    const gameDisplay = arrayBoard();
     const player1 = createPlayer('player1')
     player1.toggleFirst()
     const player2 = createPlayer('player2')
@@ -39,24 +39,28 @@ function game(){
         player2.toggleFirst()
     }
 
-    const checkWinners = () =>{
+    function checkWinners(){
         gameDisplay.printBoard()
-        if(gameDisplay[0] === gameDisplay[1] && gameDisplay[1] === gameDisplay[2] )
-            console.log(gameDisplay[0] + ' wins')
-        else if(gameDisplay[3] === gameDisplay[4] && gameDisplay[4] === gameDisplay[5])
-            return gameDisplay[3] + ' wins'
-        else if(gameDisplay[8] === gameDisplay[7] && gameDisplay[7] === gameDisplay[6])
-            return gameDisplay[8] + ' wins'
-        else if(gameDisplay[0] === gameDisplay[4] && gameDisplay[4] === gameDisplay[7])
-            return gameDisplay[0] + ' wins'
-        else if(gameDisplay[1] === gameDisplay[5] && gameDisplay[5] === gameDisplay[8])
-            return gameDisplay[1] + ' wins'
-        else if(gameDisplay[2] === gameDisplay[6] && gameDisplay[6] === gameDisplay[9])
-            return gameDisplay[0] + ' wins'
-        else if(gameDisplay[0] === gameDisplay[4] && gameDisplay[4] === gameDisplay[8])
-            return gameDisplay[0] + ' wins'
-        else if(gameDisplay[2] === gameDisplay[4] && gameDisplay[4] === gameDisplay[7])
-            return gameDisplay[0] + ' wins'
+        boardArray=gameDisplay.board
+        for(let i  = 0; i < 9; i=i+3){
+            if(boardArray[i] == boardArray[i+1] && boardArray[i+2] == boardArray[i] && boardArray[i] != '.'){
+                return (`${boardArray[i]} wins`)
+            }
+        }
+
+        for(let i  = 0; i < 3; i++){
+            if(boardArray[i] == boardArray[i+3] && boardArray[i+6] == boardArray[i] && boardArray[i] != '.'){
+                return (`${boardArray[i]} wins`)
+            }
+        }
+
+        if(boardArray[0] == boardArray[4] && boardArray[8] == boardArray[8] && boardArray[8] != '.'){
+            return (`${boardArray[0]} wins`)
+        }
+
+        else if(boardArray[2] == boardArray[4] && boardArray[6] == boardArray[6] && boardArray[6] != '.'){
+            return (`${boardArray[2]} wins`)
+        }
     }
 
     return Object.assign({turn}, {checkWinners}, gameDisplay)
@@ -64,4 +68,8 @@ function game(){
 
 const gamer = game()
 gamer.checkWinners()
+gamer.oTurn(0)
+gamer.oTurn(3)
+gamer.oTurn(6)
+console.log(gamer.checkWinners())
 
