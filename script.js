@@ -31,6 +31,7 @@ function checkWinners(gameDisplay) {
         if (boardArray[i] == boardArray[i + 1] && boardArray[i + 2] == boardArray[i] && boardArray[i] != '.') {
             displayMessage = (`${boardArray[i]} wins`)
             document.querySelector('#title').innerText = displayMessage
+            disableButton()
         }
     }
 
@@ -38,17 +39,20 @@ function checkWinners(gameDisplay) {
         if (boardArray[i] == boardArray[i + 3] && boardArray[i + 6] == boardArray[i] && boardArray[i] != '.') {
             displayMessage = (`${boardArray[i]} wins`)
             document.querySelector('#title').innerText = displayMessage
+            disableButton()
         }
     }
 
     if (boardArray[0] == boardArray[4] && boardArray[8] == boardArray[0] && boardArray[8] != '.') {
         displayMessage = (`${boardArray[0]} wins`)
         document.querySelector('#title').innerText = displayMessage
+        disableButton()
     }
 
     else if (boardArray[2] == boardArray[4] && boardArray[6] == boardArray[2] && boardArray[6] != '.') {
         displayMessage = (`${boardArray[2]} wins`)
         document.querySelector('#title').innerText = displayMessage
+        disableButton()
     }
 
     return {winYet, displayMessage}
@@ -97,6 +101,13 @@ function playerTurn(player1, player2, choice, board) {
     player2.toggleFirst()
 }
 
+function disableButton(){
+    var allBtn = document.querySelectorAll('.xobutton')
+    allBtn.forEach(btn => {
+        btn.disabled = true
+    })
+}
+
 
 function game() {
     const gameDisplay = new arrayBoard();
@@ -107,8 +118,9 @@ function game() {
 
     var allBtn = document.querySelectorAll('.reset')
 
+
     allBtn.forEach(btn => {
-        btn.innerText = ' '
+        btn.innerHTML = '&nbsp;'
     })
 
     const btnOne = document.querySelector('#one')
