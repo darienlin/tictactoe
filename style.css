@@ -60,3 +60,24 @@ body{
     border-top:2px solid #233D4D;
     border-bottom:2px solid #233D4D;
 }
+
+.topleft{
+    border-radius: 10px 0 0 0;
+}
+
+.topright{
+    border-radius: 0 10px 0 0;
+}
+
+.botright{
+    border-radius: 0 0 10px 0;
+}
+
+.botleft{
+    border-radius: 0 0 0 10px;
+}
+
+.author{
+    margin-top: 30px;
+}
+
