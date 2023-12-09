@@ -112,68 +112,86 @@ function game() {
     })
 
     const btnOne = document.querySelector('#one')
+    btnOne.disabled = false
     btnOne.addEventListener('click', () => {
         choice = 1
         playerTurn(player1, player2, choice, gameDisplay)
         checkWinners(gameDisplay)
+        btnOne.disabled = true
 
     })
 
     const btnTwo = document.querySelector('#two')
+    btnTwo.disabled = false
     btnTwo.addEventListener('click', () => {
         choice = 2
 
         playerTurn(player1, player2, choice, gameDisplay)
         checkWinners(gameDisplay)
+        btnTwo.disabled = true
     })
 
     const btnThree = document.querySelector('#three')
+    btnThree.disabled = false
     btnThree.addEventListener('click', () => {
         choice = 3
         playerTurn(player1, player2, choice, gameDisplay)
         checkWinners(gameDisplay)
+        btnThree.disabled = true
     })
 
     const btnFour = document.querySelector('#four')
+    btnFour.disabled = false
     btnFour.addEventListener('click', () => {
         choice = 4
         playerTurn(player1, player2, choice, gameDisplay)
         checkWinners(gameDisplay)
+        btnFour.disabled = true
     })
 
     const btnFive = document.querySelector('#five')
+    btnFive.disabled = false
     btnFive.addEventListener('click', () => {
         choice = 5
         playerTurn(player1, player2, choice, gameDisplay)
         checkWinners(gameDisplay)
+        btnFive.disabled = true
     })
 
     const btnSix = document.querySelector('#six')
+    btnSix.disabled = false
     btnSix.addEventListener('click', () => {
         choice = 6
         playerTurn(player1, player2, choice, gameDisplay)
         checkWinners(gameDisplay)
+        btnSix.disabled = true
     })
 
     const btnSeven = document.querySelector('#seven')
+    btnSeven.disabled = false
     btnSeven.addEventListener('click', () => {
         choice = 7
         playerTurn(player1, player2, choice, gameDisplay)
         checkWinners(gameDisplay)
+        btnSeven.disabled = true
     })
 
     const btnEight = document.querySelector('#eight')
+    btnEight.disabled = false
     btnEight.addEventListener('click', () => {
         choice = 8
         playerTurn(player1, player2, choice, gameDisplay)
         checkWinners(gameDisplay)
+        btnEight.disabled = true
     })
 
     const btnNine = document.querySelector('#nine')
+    btnNine.disabled = false
     btnNine.addEventListener('click', () => {
         choice = 9
         playerTurn(player1, player2, choice, gameDisplay)
         checkWinners(gameDisplay)
+        btnNine.disabled = true
     })
 
     displayMessage = checkWinners(gameDisplay).displayMessage
