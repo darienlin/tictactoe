@@ -53,13 +53,13 @@ function checkWinners(gameDisplay){
 }
 
 function playerTurn(player1, player2, board){
-    var choice = prompt("Enter a number: ");
+    var choice = prompt("Enter a number (1-9): ");
     if(player1.isFirst()){
-        board.xTurn(parseInt(choice))
+        board.xTurn(parseInt(choice-1))
         board.printBoard()
     }
     else{
-        board.oTurn(parseInt(choice))
+        board.oTurn(parseInt(choice-1))
         board.printBoard()
     }
 
